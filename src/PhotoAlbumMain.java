@@ -1,15 +1,13 @@
 import model.ShapeAlbum;
-import model.Snapshot;
 import utility.CommandFileReader;
+import view.AlbumWebView;
 import view.GraphicalView;
-
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class PhotoAlbumMain {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     // Initiating mandatory parameters
     String inputFileName = null;
     String viewTypeName = null;
@@ -71,7 +69,16 @@ public class PhotoAlbumMain {
 
     if (viewTypeName.equals("graphical")) {
       view = new GraphicalView(viewWidth, viewHeight, reader.getAlbum());
-    } else {
+    } else if (viewTypeName.equalsIgnoreCase("web")) {
+      if (outputFileName == null) {
+        System.out.println("Output file is required for web view.");
+        System.exit(1);
+      }
+      AlbumWebView web = new AlbumWebView(album);
+      web.createHtmlRepresentation();
+      web.storeHtmlToFile(outputFileName);
+    }
+    else {
       System.err.println("Unsupported view type.");
       return;
     }
