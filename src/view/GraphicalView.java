@@ -19,7 +19,7 @@ public class GraphicalView extends JFrame implements IShapeView {
 
   //current index of album
   private int index;
-  private JPanel drawingPanel;
+  private DrawingPanel drawingPanel;
   JPopupMenu popupMenu;
 
 
@@ -39,8 +39,8 @@ public class GraphicalView extends JFrame implements IShapeView {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-          paintComponents(drawingPanel.getGraphics());
-          drawShapes(drawingPanel.getGraphics(), finalI);
+          setUpLabel(finalI);
+          setUpDrawingPanel(finalI);
           index = finalI;
         }
       });
@@ -61,12 +61,6 @@ public class GraphicalView extends JFrame implements IShapeView {
     this.label = new JLabel("Welcome", JLabel.CENTER);
     topPanel.add(label);
     this.add(topPanel,BorderLayout.NORTH);
-
-    // Create and add panels
-    drawingPanel = new JPanel();
-    add(drawingPanel, BorderLayout.CENTER);
-    System.out.println(drawingPanel.getGraphics());
-
 
     // Create a panel for buttons
     JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -91,9 +85,20 @@ public class GraphicalView extends JFrame implements IShapeView {
 
     // Add the control panel to the bottom of the frame
     add(controlPanel, BorderLayout.SOUTH);
+    setUpLabel(index);
+    setUpDrawingPanel(index);
     setVisible(true);
-    paintComponents(drawingPanel.getGraphics());
-    drawShapes(drawingPanel.getGraphics(),index);
+
+  }
+
+  private void setUpLabel(int index){
+    this.label.setText(album.getCurrentSnapshotDesc(index));
+  }
+
+  private void setUpDrawingPanel(int index){
+    drawingPanel = new DrawingPanel(album.getIndexShape(index));
+    add(drawingPanel, BorderLayout.CENTER);
+    refreshView();
   }
 
   private void selectSnapshot() {
@@ -103,41 +108,20 @@ public class GraphicalView extends JFrame implements IShapeView {
   private void previousnapshot() {
     index--;
     index = Math.max(index, 0);
-    paintComponents(drawingPanel.getGraphics());
-    drawShapes(drawingPanel.getGraphics(),index);
+    setUpLabel(index);
+    setUpDrawingPanel(index);
+    refreshView();
   }
 
   private void nextSnapshot() {
     index++;
     index = Math.min(index,album.getSnapshotsSize()-1);
-    paintComponents(drawingPanel.getGraphics());
-    drawShapes(drawingPanel.getGraphics(),index);
+    setUpLabel(index);
+    setUpDrawingPanel(index);
+    refreshView();
   }
 
-  private void drawShapes(Graphics g,int index) {
-    List<IShape> shapesToDraw = album.getIndexShape(index);
-    this.label.setText(album.getCurrentSnapshotDesc(index));
-    for (IShape shape : shapesToDraw) {
-      if (shape instanceof Rectangle) {
-        drawRectangle(g, (Rectangle) shape);
-      } else if (shape instanceof Oval) {
-        drawOval(g, (Oval) shape);
-      }
 
-    }
-  }
-
-  private void drawRectangle(Graphics g, Rectangle rect) {
-    g.setColor(rect.getColor().toAwtColor());
-    // Fills the rectangle with the set color
-    g.fillRect((int) rect.getX(), (int) rect.getY(), (int) rect.getWidth(), (int) rect.getHeight());
-  }
-
-  private void drawOval(Graphics g, Oval oval) {
-    g.setColor(oval.getColor().toAwtColor());
-    g.fillOval((int) oval.getX(), (int) oval.getY(), (int) oval.getRadiusX(), (int) oval.getRadiusY());
-    // Use fillOval instead of drawOval to fill the oval with color
-  }
 
   public void quit() {
     System.exit(0);
