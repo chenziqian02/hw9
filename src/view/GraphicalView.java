@@ -56,7 +56,7 @@ public class GraphicalView extends JFrame implements IShapeView {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
-
+    //Setting up toPanel for label
     JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     this.label = new JLabel("Welcome", JLabel.CENTER);
     topPanel.add(label);
@@ -91,10 +91,18 @@ public class GraphicalView extends JFrame implements IShapeView {
 
   }
 
+  /**
+   * update label text when jumping to a new snapshot
+   * @param index
+   */
   private void setUpLabel(int index){
     this.label.setText(album.getCurrentSnapshotDesc(index));
   }
 
+  /**
+   * update drawing panel when jumping to a new snapshot
+   * @param index
+   */
   private void setUpDrawingPanel(int index){
     drawingPanel = new DrawingPanel(album.getIndexShape(index));
     add(drawingPanel, BorderLayout.CENTER);
@@ -110,7 +118,6 @@ public class GraphicalView extends JFrame implements IShapeView {
     index = Math.max(index, 0);
     setUpLabel(index);
     setUpDrawingPanel(index);
-    refreshView();
   }
 
   private void nextSnapshot() {
@@ -118,7 +125,6 @@ public class GraphicalView extends JFrame implements IShapeView {
     index = Math.min(index,album.getSnapshotsSize()-1);
     setUpLabel(index);
     setUpDrawingPanel(index);
-    refreshView();
   }
 
 
