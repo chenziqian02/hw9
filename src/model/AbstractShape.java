@@ -108,40 +108,8 @@ public abstract class AbstractShape implements IShape {
 
   public void setColor(Color original){
     this.color = original;
-//    this.rgbColor = convertEnumToRGB(color);
   }
 
-//  public void setColor(RGBColor rgbColor) {
-//    this.rgbColor = rgbColor;
-//    this.color = convertRGBToEnum(rgbColor);
-//  }
-
-//  private RGBColor convertEnumToRGB(Color color) {
-//    switch (color) {
-//      case RED:
-//        return new RGBColor(1.0f, 0.0f, 0.0f);
-//      case GREEN:
-//        return new RGBColor(0.0f, 1.0f, 0.0f);
-//      case BLUE:
-//        return new RGBColor(0.0f, 0.0f, 1.0f);
-//      default:
-//        return new RGBColor(0.0f, 0.0f, 0.0f);
-//    }
-//  }
-
-//  private Color convertRGBToEnum(RGBColor rgbColor) {
-//    if (rgbColor.getRed() == 1.0f && rgbColor.getGreen() == 0.0f && rgbColor.getBlue() == 0.0f) {
-//      return Color.RED;
-//    } else if (rgbColor.getRed() == 0.0f && rgbColor.getGreen() == 1.0f && rgbColor.getBlue() == 0.0f) {
-//      return Color.GREEN;
-//    } else if (rgbColor.getRed() == 0.0f && rgbColor.getGreen() == 0.0f && rgbColor.getBlue() == 1.0f) {
-//      return Color.BLUE;
-//    } else if (rgbColor.getRed() == 1.0f && rgbColor.getGreen() == 1.0f && rgbColor.getBlue() == 0.0f) {
-//      return Color.YELLOW;
-//    }
-//    // Default or unknown case
-//    return Color.UNKNOWN;
-//  }
 
 
 

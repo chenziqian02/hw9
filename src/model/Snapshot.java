@@ -60,6 +60,10 @@ public class Snapshot {
     return timestamp;
   }
 
+  public ArrayList<IShape> getShapes() {
+    return shapes;
+  }
+
   /**
    * Returns a string representation of the Snapshot.
    * Includes the snapshot ID, timestamp, description, and details of the shapes.
@@ -67,15 +71,11 @@ public class Snapshot {
    * @return A string representation of the Snapshot.
    */
   @Override
+
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("Snapshot ID: ").append(timestamp.toString()).append("\n");
+    sb.append("Snapshot ID: ").append(timestamp.toString()).append(" - ");
     sb.append("Timestamp: ").append(timestamp.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))).append("\n");
-    sb.append("Description: ").append(description).append("\n");
-    sb.append("Shape Information:\n");
-    for (IShape shape : shapes) {
-      sb.append(shape.toString()).append("\n");
-    }
     return sb.toString();
   }
 

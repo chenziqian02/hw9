@@ -100,6 +100,24 @@ public class ShapeAlbum {
   }
 
   /**
+   * Get the list of shapes where the index = index
+   * @param index
+   * @return
+   */
+  public List<IShape> getIndexShape(int index){
+    return snapshots.get(index).getShapes();
+  }
+
+  /**
+   * get current snapshot's description
+   * @param index
+   * @return
+   */
+  public String getCurrentSnapshotDesc(int index){
+    return snapshots.get(index).toString();
+  }
+
+  /**
    * Retrieves the last snapshot taken in the album, if any.
    *
    * @return The last snapshot, or null if no snapshots have been taken.

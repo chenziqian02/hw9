@@ -70,7 +70,7 @@ public class PhotoAlbumMain {
     reader.readCommands();
 
     if (viewTypeName.equals("graphical")) {
-      view = new GraphicalView(viewWidth, viewHeight, reader.getAlbum().getShapes());
+      view = new GraphicalView(viewWidth, viewHeight, reader.getAlbum());
     } else {
       System.err.println("Unsupported view type.");
       return;
