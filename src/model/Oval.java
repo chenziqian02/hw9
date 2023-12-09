@@ -81,7 +81,7 @@ public class Oval extends AbstractShape {
             + String.format("%.1f", getY()) + "), "
             + "X radius: " + String.format("%.1f", radiusX) + ", "
             + "Y radius: " + String.format("%.1f", radiusY) + ", "
-            + "Color: " + this.rgbColor + "\n";
+            + "Color: " + this.color + "\n";
 
     return output + oval;
   }

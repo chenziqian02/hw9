@@ -96,7 +96,7 @@ public class Rectangle extends AbstractShape {
             + String.format("%.1f", getY()) + "), "
             + "Width: " + String.format("%.1f", width) + ", "
             + "Height: " + String.format("%.1f", height) + ", "
-            + "Color: " + this.rgbColor + "\n";
+            + "Color: " + this.color + "\n";
 
     return output + rec;
   }

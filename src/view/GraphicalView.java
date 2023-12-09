@@ -89,33 +89,16 @@ public class GraphicalView extends JFrame implements IShapeView {
   }
 
   private void drawRectangle(Graphics g, Rectangle rect) {
-    g.setColor(convertColor(rect.getColor()));
+    g.setColor(rect.getColor().toAwtColor());
     // Fills the rectangle with the set color
     g.fillRect((int) rect.getX(), (int) rect.getY(), (int) rect.getWidth(), (int) rect.getHeight());
   }
 
   private void drawOval(Graphics g, Oval oval) {
-    g.setColor(convertColor(oval.getColor()));
+    g.setColor(oval.getColor().toAwtColor());
     g.drawOval((int) oval.getX(), (int) oval.getY(), (int) oval.getRadiusX(), (int) oval.getRadiusY());
     // Use fillOval instead of drawOval to fill the oval with color
   }
-
-  private Color convertColor(model.Color color) {
-    // Implement color conversion logic here
-    // Example:
-    switch (color) {
-      case RED:
-        return new Color(255, 0, 0);
-      case GREEN:
-        return new Color(0, 255, 0);
-      case BLUE:
-        return new Color(0, 0, 255);
-      // Add more cases for other colors
-      default:
-        return new Color(0, 0, 0); // Default to black
-    }
-  }
-
 
   public void quit() {
     System.exit(0);

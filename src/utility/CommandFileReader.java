@@ -80,8 +80,7 @@ public class CommandFileReader {
 
 
 
-    Color color = Color.UNKNOWN;
-    color.setRGB(red, green, blue);
+    Color color = new Color(red,green,blue);
 
     System.out.println("tokens");
     System.out.println(tokens);
