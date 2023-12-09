@@ -35,9 +35,9 @@ public class AlbumWebView {
 
     for (Snapshot image : album.getSnapshots()) {
       htmlBuilder.append("<section class=\"image-snapshot\">\n")
-              .append("<header>Time Captured: ")
+              .append("<header><strong>")
               .append(image.getTimestamp())
-              .append("</header>\n")
+              .append("</strong></header>\n")
               .append("<article>Description: ")
               .append(image.getDescription())
               .append("</article>\n")

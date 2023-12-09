@@ -59,7 +59,14 @@ public class CommandFileReader {
         removeShape(tokens);
         break;
       case "snapshot":
-        album.takeSnapshot("snapshot");
+        String description = "";
+        if(tokens.length > 1){
+          StringBuilder sb =new StringBuilder();
+          for(int i = 1; i<tokens.length; i++)
+            sb.append(tokens[i]+ " ");
+          description = sb.toString();
+        }
+        album.takeSnapshot(description);
         break;
       default:
         System.out.println("Invalid command: " + command);
